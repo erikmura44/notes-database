@@ -21,12 +21,13 @@ module.exports = {
   }
 
 }
-
+```
 then create migrations:
 
 knex migrate:make <name>
 
 then inside that migration:
+```javascript
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("artist", function (table) {
     table.increments()
@@ -37,6 +38,7 @@ exports.up = function(knex, Promise) {
 exports.down = function(knex, Promise) {
   return knex.schema.dropTable("artist")
 }
+```
 
 knex migrate:latest
 
@@ -49,6 +51,7 @@ git init...
 then make seeds
 
 knex seed:make <name>
+```javascript
 exports.seed = function(knex, Promise) {
   return Promise.join(
     // Deletes ALL existing entries
@@ -59,5 +62,6 @@ exports.seed = function(knex, Promise) {
     knex('artist').insert({id: 2, name: 'The Flaming Lips'})
   );
 };
+```
 
 knex seed:run
